@@ -1,0 +1,28 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/ssmplus?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
+mybatis-plus:
+  mapper-locations: classpath*:com/zving/ssmplus/dao/mapper/*.xml
+  global-config:
+    db-config:
+#        id-type: INPUT #不使用自增主键
+      field-strategy: not_empty
+      #      #驼峰下划线转换
+      column-underline: false
+      #逻辑删除配置
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+      db-type: oracle
+    refresh: false
+  configuration:
+    cache-enabled: false
+    map-underscore-to-camel-case: false #关闭驼峰，不然传递的驼峰参数会转下划线字段，sql报错
+    call-setters-on-nulls: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+
+

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.4.0</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.zving</groupId>
+    <artifactId>ssmplus</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>ssmplus</name>
+    <description>Demo project for Spring Boot</description>
+
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.4.1</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>com/zving/ssmplus/dao/mapper/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>*</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatisplus-maven-plugin</artifactId>
+                <version>1.0</version>
+                <configuration>
+                    <outputDir>E:\sts_workspace\ysym_server\plugin-pmph-code\src\main\java</outputDir>
+                    <!-- 是否覆盖同名文件(默认false) -->
+                    <fileOverride>true</fileOverride>
+                    <open>false</open>
+                    <!-- mapper.xml 中添加二级缓存配置(默认true) -->
+                    <enableCache>false</enableCache>
+                    <!-- 开发者名称 -->
+                    <author>zving</author>
+                    <!-- 是否开启 ActiveRecord 模式(默认true) -->
+                    <activeRecord>false</activeRecord>
+                    <!-- 数据源配置，( **必配** ) -->
+                    <dataSource>
+                        <driverName>oracle.jdbc.driver.OracleDriver</driverName>
+                        <url>jdbc:oracle:thin:@127.0.0.1:1521:orcl</url>
+                        <schema>PMPHCODE</schema>
+                        <username>pmphcode</username>
+                        <password>10301</password>
+                    </dataSource>
+                    <strategy>
+                        <superServiceClass>com.baomidou.mybatisplus.extension.service.IService</superServiceClass>
+                        <superServiceImplClass>com.baomidou.mybatisplus.extension.service.impl.ServiceImpl</superServiceImplClass>
+                        <superMapperClass>com.baomidou.mybatisplus.core.mapper.BaseMapper</superMapperClass>
+                        <!-- 表前缀 -->
+                        <!--<tablePrefix>system_</tablePrefix>-->
+                        <!--Entity中的ID生成策略（默认 id_worker）-->
+                        <idGenType>id_worker</idGenType>
+                        <!-- 要生成的表名 与exclude 二选一配置-->
+                        <include>
+                            <property>ZMMessageLog</property>
+                        </include>
+                    </strategy>
+                    <packageInfo>
+                        <!--项目的包结构-->
+                        <parent>com.zving.code</parent>
+                        <service>service</service>
+                        <serviceImpl>service.impl</serviceImpl>
+                        <entity>model</entity>
+                        <mapper>dao</mapper>
+                        <xml>dao</xml>
+                        <!--<controller>front</controller>-->
+                    </packageInfo>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.oracle</groupId>
+                        <artifactId>ojdbc6</artifactId>
+                        <version>11.2.0.3</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
