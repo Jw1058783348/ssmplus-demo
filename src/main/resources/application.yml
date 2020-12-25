@@ -1,11 +1,15 @@
 server:
-  port: 8080
+  port: 8083
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456
     url: jdbc:mysql://localhost:3306/ssmplus?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    cache: false
 mybatis-plus:
   mapper-locations: classpath*:com/zving/ssmplus/dao/mapper/*.xml
   global-config:
@@ -24,5 +28,4 @@ mybatis-plus:
     map-underscore-to-camel-case: false #关闭驼峰，不然传递的驼峰参数会转下划线字段，sql报错
     call-setters-on-nulls: true
     log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
-
 

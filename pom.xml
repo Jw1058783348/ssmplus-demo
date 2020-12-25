@@ -60,7 +60,8 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <includes>
-                    <include>*</include>
+                    <!-- **包括所有 -->
+                    <include>**</include>
                 </includes>
             </resource>
         </resources>
